@@ -69,6 +69,10 @@ curl -X DELETE <host>/corridas/648a29aa0fa593a7fcddf440
     aws ecs describe-services --cluster quiz-app-cluster --services quiz-app-service
 
 <br />
+
+`Nota: Tuve que crear una nueva regla de entrada en los SecurityGroups de la red asignada para permitir el acceso desde cualquier IP`
+
+<br />
 <br />
 
 # Estructura del directorio
