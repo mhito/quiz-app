@@ -47,28 +47,26 @@ curl -X DELETE <host>/corridas/648a29aa0fa593a7fcddf440
     Docker Registry:
     public.ecr.aws/c5o5d7y3/quiz-app
 
-## Crear imagen
-docker build -t public.ecr.aws/c5o5d7y3/quiz-app:latest .
-
-## Subir imagen
-aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/c5o5d7y3
-docker build -t quiz-app .
-docker tag quiz-app:latest public.ecr.aws/c5o5d7y3/quiz-app:latest
-docker push public.ecr.aws/c5o5d7y3/quiz-app:latest
+## Crear y Subir imagen
+    aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/c5o5d7y3
+    npm i
+    docker build -t quiz-app .
+    docker tag quiz-app:latest public.ecr.aws/c5o5d7y3/quiz-app:latest
+    docker push public.ecr.aws/c5o5d7y3/quiz-app:latest
 
 ## Crear cluster ECS:
-aws ecs create-cluster --cluster-name quiz-app-cluster
+    aws ecs create-cluster --cluster-name quiz-app-cluster
 
 
 ## Registrar tarea:
-aws ecs register-task-definition --cli-input-json file://task-definition.json
+    aws ecs register-task-definition --cli-input-json file://task-definition.json
 
 
 ## Crear servicio
-aws ecs create-service --cluster quiz-app-cluster --service-name quiz-app-service --task-definition deploy-test --desired-count 1 --launch-type FARGATE --network-configuration "awsvpcConfiguration={subnets=[subnet-52398c34,subnet-64a3103f,subnet-ee73d8a7],securityGroups=[sg-4d109830,sg-0dfd32b37afd69cf2],assignPublicIp=ENABLED}"
+    aws ecs create-service --cluster quiz-app-cluster --service-name quiz-app-service --task-definition deploy-test --desired-count 1 --launch-type FARGATE --network-configuration "awsvpcConfiguration={subnets=[subnet-52398c34,subnet-64a3103f,subnet-ee73d8a7],securityGroups=[sg-4d109830,sg-0dfd32b37afd69cf2],assignPublicIp=ENABLED}"
 
 ## Verificar estado del despliegue:
-aws ecs describe-services --cluster quiz-app-cluster --services quiz-app-service
+    aws ecs describe-services --cluster quiz-app-cluster --services quiz-app-service
 
 <br />
 <br />
