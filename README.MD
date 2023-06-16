@@ -87,10 +87,14 @@ aws ecs describe-services --cluster quiz-app-cluster --services quiz-app-service
     - corridaController.test: Pruebas unitarias hechas a cierta parte del código
     - integracion.test: Pruebas de integración. Se usa supertest. Llama al endpoint expuesto
 
+<br />
+<br />
+
+
 Fuentes: 
 - StackOverflow
 - ChatGPT
 - Bard
-- mediium.com
+- medium.com
 
 
